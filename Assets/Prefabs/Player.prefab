@@ -93,8 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707ff6fa3264b7a4099749fe0c4913cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: {x: 0, y: 1000}
-  gravityScale: 7
+  jumpForce: {x: 0, y: 3000}
+  gravityScale: 20
   speed: 20
 --- !u!1 &3092004579188431953
 GameObject:

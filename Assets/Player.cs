@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
         animator.Play("Run");
     }
     public float speed = 20;
+    public float midAirVelocity = 10;
     void Update()
     {
         transform.Translate(speed * Time.deltaTime, 0, 0);
@@ -25,5 +27,40 @@ public class Player : MonoBehaviour
         {
             rigid.AddForce(jumpForce);
         }
+
+        float velocity = rigid.velocity.y;
+        float absVelocity = Mathf.Abs(velocity);
+        //float absVelocity = velocity > 0 ? velocity : -velocity;
+        //float absVelocity = velocity;
+        //if (absVelocity > 0)
+        //    absVelocity = -velocity;
+
+        //string animationName = "";
+        string animationName = string.Empty;
+        if (IsGround())
+        {
+            animationName = "Run";
+        }
+        else
+        {
+            if (absVelocity < midAirVelocity) 
+                animationName = "Jump_MidAir";
+            else if (velocity > 0) 
+                animationName = "Jump_Up";               //상승. 
+            else//하락
+            {
+                animationName = "Jump_Fall";                
+            }
+        }
+        animator.Play(animationName);
+    }
+
+    public Transform rayStart;
+    public float rayCheckDistance = 0.1f;
+    public LayerMask groundLayer;
+    private bool IsGround()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(rayStart.position, Vector2.down, rayCheckDistance, groundLayer);
+        return hit.transform != null;
     }
 }
