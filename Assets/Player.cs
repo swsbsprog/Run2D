@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            rigid.velocity = Vector2.zero;
             rigid.AddForce(jumpForce);
         }
 
@@ -62,5 +63,9 @@ public class Player : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(rayStart.position, Vector2.down, rayCheckDistance, groundLayer);
         return hit.transform != null;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(rayStart.position, Vector2.down * rayCheckDistance);
     }
 }
