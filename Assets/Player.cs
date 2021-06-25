@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     public float midAirVelocity = 10;
     void Update()
     {
+        if (RunGameManager.IsPlaying() == false)
+            return;
+
         transform.Translate(speed * Time.deltaTime, 0, 0);
 
         if (Input.GetKeyDown(KeyCode.Space))
