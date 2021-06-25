@@ -991,7 +991,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1549077824, guid: a0bd30fce26eb344595a74199b2d51f7, type: 3}
       propertyPath: waitSeconds
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1737563509, guid: a0bd30fce26eb344595a74199b2d51f7, type: 3}
       propertyPath: m_text
@@ -14286,7 +14286,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 442172104, guid: 279fafabc4b2a6145af74017aa89b6c6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442172106, guid: 279fafabc4b2a6145af74017aa89b6c6, type: 3}
+      propertyPath: accelerate
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3092004578734893809, guid: 279fafabc4b2a6145af74017aa89b6c6, type: 3}
       propertyPath: m_Name
