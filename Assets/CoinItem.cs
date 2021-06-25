@@ -19,7 +19,7 @@ public class CoinItem : MonoBehaviour
         //    return;
 
         isUse = true;
-        print(collision.transform);
+        //print(collision.transform);
         GetComponentInChildren<Animator>().Play("Hide", 1);
         RunGameManager.instance.AddCoin(100);
 

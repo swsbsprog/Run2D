@@ -11,6 +11,14 @@ public class RunGameManager : MonoBehaviour
     {
         instance = this;
     }
+
+    internal void EndStage()
+    {
+        gameStateType = GameStateType.End;
+        Player.instance.OnEndStage();
+        timeText.text = "Clear";
+    }
+
     TextMeshProUGUI timeText;
     TextMeshProUGUI pointText;
     public int waitSeconds = 3;

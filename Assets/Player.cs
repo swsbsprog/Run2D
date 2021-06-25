@@ -5,10 +5,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     Animator animator;
     Rigidbody2D rigid;
     public Vector2 jumpForce = new Vector2(0, 1000);
     public float gravityScale = 7;
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    internal void OnEndStage()
+    {
+        animator.Play("Idle");
+    }
+
     void Start()
     {
         //animator = transform.Find("Sprite").GetComponent<Animator>();
