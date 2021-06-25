@@ -32,7 +32,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -42,13 +42,13 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -68,7 +68,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -80,7 +80,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -92,7 +92,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MonedaD_0
+      name: spr_coin_ama_0
       rect:
         serializedVersion: 2
         x: 0
@@ -117,14 +129,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f02b619ac532e7450800000000000000
-      internalID: 6088342627132289551
+      spriteID: c32e9d068c4d210d0800000000000000
+      internalID: -3453464007156309444
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MonedaD_1
+      name: spr_coin_ama_1
       rect:
         serializedVersion: 2
         x: 16
@@ -138,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70f758df5a9514fd0800000000000000
-      internalID: -2359506160307568889
+      spriteID: 4db046724bc7f5dd0800000000000000
+      internalID: -2495138555343139884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MonedaD_2
+      name: spr_coin_ama_2
       rect:
         serializedVersion: 2
         x: 32
@@ -159,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4abd9fe0f01ce440800000000000000
-      internalID: 4966363116081101388
+      spriteID: 07a3be533f426e5b0800000000000000
+      internalID: -5339539681200883088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MonedaD_3
+      name: spr_coin_ama_3
       rect:
         serializedVersion: 2
         x: 48
@@ -180,29 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8549fdb8f8ffba6f0800000000000000
-      internalID: -672162727369665448
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MonedaD_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 477cd3e2fc776c020800000000000000
-      internalID: 2361706786320140148
+      spriteID: 058202afa9d157ca0800000000000000
+      internalID: -6019872775452219312
       vertices: []
       indices: 
       edges: []
@@ -210,7 +201,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d276075a5df98e848b6ece2c7d172497
+    spriteID: a73aaf7681f2e1d488a7a0f827addf96
     internalID: 0
     vertices: []
     indices: 
