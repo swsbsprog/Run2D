@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 171366814}
   - component: {fileID: 171366813}
   - component: {fileID: 171366810}
+  - component: {fileID: 171366811}
   m_Layer: 0
   m_Name: MiniMapCamera
   m_TagString: MainCamera
@@ -154,6 +155,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+--- !u!114 &171366811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171366809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f08a6f40d2ec4de981f811bfc829f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TexturePixelsPerWorldUnit: 2
 --- !u!20 &171366813
 Camera:
   m_ObjectHideFlags: 0
@@ -165,7 +179,7 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 3
   m_BackGroundColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 0
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
@@ -464,7 +478,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 301818796100509868, guid: a0bd30fce26eb344595a74199b2d51f7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 301818797940104356, guid: a0bd30fce26eb344595a74199b2d51f7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -143.7628
+      objectReference: {fileID: 0}
+    - target: {fileID: 301818797940104356, guid: a0bd30fce26eb344595a74199b2d51f7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -159.0109
+      objectReference: {fileID: 0}
+    - target: {fileID: 301818797940104356, guid: a0bd30fce26eb344595a74199b2d51f7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -32.33972
+      objectReference: {fileID: 0}
+    - target: {fileID: 301818797940104356, guid: a0bd30fce26eb344595a74199b2d51f7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -27.18251
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0bd30fce26eb344595a74199b2d51f7, type: 3}
