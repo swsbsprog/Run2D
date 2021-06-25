@@ -26,8 +26,26 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         rigid.gravityScale = gravityScale;
+        cameraTr = Camera.main.transform;
+        offsetXCameraPos = cameraTr.position.x - transform.position.x;
+        // offsetXCameraPos : 3
         //animator.Play("Run");
     }
+
+    public Transform cameraTr;
+    public float offsetXCameraPos;  // 카메라와 나의 차이 기본값
+    public float allowOffsetX = 0.2f;
+    public float restoreSpeed = 40;
+    private void RestoreXPosition()
+    {
+        float offsetX = cameraTr.position.x - transform.position.x;
+        if(offsetX > offsetXCameraPos + allowOffsetX)
+        {
+            // 위치를 수정해야한다.
+            transform.Translate(restoreSpeed * Time.deltaTime, 0, 0);
+        }
+    }
+
     public float speed = 20;
     public float midAirVelocity = 10;
     void Update()
@@ -37,14 +55,6 @@ public class Player : MonoBehaviour
 
         transform.Translate(speed * Time.deltaTime, 0, 0);
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            transform.Find("MagnetAbility").gameObject.SetActive(true);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            transform.Find("MagnetAbility").gameObject.SetActive(false);
-        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -77,8 +87,10 @@ public class Player : MonoBehaviour
             }
         }
         animator.Play(animationName);
-    }
 
+
+        RestoreXPosition();
+    }
     public Transform rayStart;
     public float rayCheckDistance = 0.1f;
     public LayerMask groundLayer;
