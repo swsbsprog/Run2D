@@ -13,7 +13,7 @@ public class MagnetAbility : MonoBehaviour
         items[collision.transform] = 0;
     }
 
-    public float accelerate = 3000;
+    public float accelerate = 30;
     private void Update()
     {
         var pos = transform.position;
