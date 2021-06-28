@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
         UpdateSprite();
     }
 
+    float moveX;
     private void UpdateSprite()
     {
         float velocity = rigid.velocity.y;
@@ -49,7 +50,11 @@ public class Player : MonoBehaviour
         if (IsGround())
         {
             jumpCount = 0;
-            animationName = "Run";
+            //이동 하지 않고 있으면 "Idle" 하자.
+            if(moveX == 0)
+                animationName = "Idle";
+            else 
+                animationName = "Run";
         }
         else
         {
@@ -94,13 +99,14 @@ public class Player : MonoBehaviour
         //}
 
         {
-            float move = 0;
-            if (Input.GetKey(KeyCode.A)) move = -1;
-            if (Input.GetKey(KeyCode.D)) move = 1;
+            //float moveX = 0;
+            moveX = 0;
+            if (Input.GetKey(KeyCode.A)) moveX = -1;
+            if (Input.GetKey(KeyCode.D)) moveX = 1;
 
-            if (move != 0)
+            if (moveX != 0)
             {
-                UpdateRotation(move);
+                UpdateRotation(moveX);
                 transform.Translate(1 * speed * Time.deltaTime, 0, 0, Space.Self);
             }
         }
