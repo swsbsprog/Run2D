@@ -12,6 +12,25 @@ public class EditorUtil
     //& : alt
     //% :  Winows의 Ctrl, macOS의 cmd키
 
+    [MenuItem("Util/Open SourceTree #&s")]
+    public static void OpenSourceTree()
+    {
+        var dsc = Path.DirectorySeparatorChar;
+        string applicationLocalPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData).Replace("Roaming", "");
+
+        string projectPath = Application.dataPath.Replace("/Assets", "");
+        var filePath = $"{applicationLocalPath}Local{dsc}SourceTree{dsc}SourceTree.exe";
+        if (File.Exists(filePath) == false)
+        {
+            Debug.Log(filePath + " 경로가 존재하지 않습니다");
+            return;
+        }
+
+        AssetDatabase.SaveAssets();
+
+        //명령 실행하자.
+        System.Diagnostics.Process.Start(filePath, $" -f \"{projectPath}\" status");
+    }
 
     /// <summary>
     /// 선택한 콤포넌트의 주소를 복사한다.
