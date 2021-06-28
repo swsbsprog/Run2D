@@ -80,21 +80,34 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        //a, d, 좌우 이동.
-        float move = 0;
-        if (Input.GetKey(KeyCode.A)) move = -1;
-        if (Input.GetKey(KeyCode.D)) move = 1;
+        ////a, d, 좌우 이동.
+        //{ // 월드축으로 이동 하는샘플.
+        //    float move = 0;
+        //    if (Input.GetKey(KeyCode.A)) move = -1;
+        //    if (Input.GetKey(KeyCode.D)) move = 1;
 
-        transform.Translate(move * speed * Time.deltaTime, 0, 0, Space.World);
+        //    if (move != 0)
+        //    {
+        //        transform.Translate(move * speed * Time.deltaTime, 0, 0, Space.World);
+        //        UpdateRotation(move);
+        //    }
+        //}
 
-        UpdateRotation(move);
+        {
+            float move = 0;
+            if (Input.GetKey(KeyCode.A)) move = -1;
+            if (Input.GetKey(KeyCode.D)) move = 1;
+
+            if (move != 0)
+            {
+                UpdateRotation(move);
+                transform.Translate(1 * speed * Time.deltaTime, 0, 0, Space.Self);
+            }
+        }
     }
 
     private void UpdateRotation(float currentMove)
     {
-        if (currentMove == 0)
-            return;
-
         transform.rotation = Quaternion.Euler(0, currentMove < 0 ? 180 : 0, 0);
     }
 
