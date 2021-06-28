@@ -37,12 +37,42 @@ public class Player : MonoBehaviour
 
         Jump();
 
+        Attack();
+
         UpdateSprite();
+    }
+
+    public string attackClipName = "MeleeAttack1";
+    public float animationTime = 0.6f;
+    StateType state = StateType.IdleOrRunOrJump;
+    public enum StateType
+    {
+        IdleOrRunOrJump,
+        Attack,
+    }
+    private void Attack()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            // 공격 애니메이션 재생.
+            StartCoroutine(AttackCo());
+        }
+    }
+
+    private IEnumerator AttackCo()
+    {
+        state = StateType.Attack;
+        animator.Play(attackClipName);
+        yield return new WaitForSeconds(animationTime);
+        state = StateType.IdleOrRunOrJump;
     }
 
     float moveX;
     private void UpdateSprite()
     {
+        if (state == StateType.Attack)
+            return;
+
         float velocity = rigid.velocity.y;
         float absVelocity = Mathf.Abs(velocity);
 
