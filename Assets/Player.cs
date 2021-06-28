@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
 
     public float speed = 20;
     public float midAirVelocity = 10;
+    int jumpCount = 0;
     void Update()
     {
         if (RunGameManager.IsPlaying() == false)
@@ -55,11 +56,14 @@ public class Player : MonoBehaviour
 
         transform.Translate(speed * Time.deltaTime, 0, 0);
 
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (jumpCount < 1)
         {
-            rigid.velocity = Vector2.zero;
-            rigid.AddForce(jumpForce);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                jumpCount++;
+                rigid.velocity = Vector2.zero;
+                rigid.AddForce(jumpForce);
+            }
         }
 
         float velocity = rigid.velocity.y;
@@ -73,6 +77,7 @@ public class Player : MonoBehaviour
         string animationName = string.Empty;
         if (IsGround())
         {
+            jumpCount = 0;
             animationName = "Run";
         }
         else
