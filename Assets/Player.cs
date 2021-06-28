@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
         public float animationTime;
         public float dashSpeed;
         public float dashTime;
+        public GameObject collider;
     }
     public List<AttackInfo> attacks;
 
@@ -65,7 +66,10 @@ public class Player : MonoBehaviour
         {
             // 공격 애니메이션 재생.
             if (attackHandle != null)
+            {
+                currentAttack?.collider.SetActive(false);
                 StopCoroutine(attackHandle);
+            }
             attackHandle = StartCoroutine(AttackCo());
         }
     }
@@ -77,15 +81,17 @@ public class Player : MonoBehaviour
     // 두번째 공격 코루틴 대기
     // 첫번째 공격 코루틴 끝
     int currentAttackIndex = 0;
+    AttackInfo currentAttack;
     private IEnumerator AttackCo()
     {
         state = StateType.Attack;
-        var currentAttack = attacks[currentAttackIndex];
+        currentAttack = attacks[currentAttackIndex];
         currentAttackIndex++;
         if (currentAttackIndex == attacks.Count)
             currentAttackIndex = 0;
 
         animator.Play(currentAttack.clipName);
+        currentAttack.collider.SetActive(true);
         //currentAttack.dashTime 동안 currentAttack.dashSpeed로 이동해라.
 
         float dashEndTime = Time.time + currentAttack.dashTime;
@@ -100,6 +106,7 @@ public class Player : MonoBehaviour
 
         //연속 공격이 끝난다음 실행되는곳
         state = StateType.IdleOrRunOrJump;
+        currentAttack.collider.SetActive(false);
         currentAttackIndex = 0;
     }
 
