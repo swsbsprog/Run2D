@@ -6,14 +6,15 @@ public class CoinItem : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<Player>() == null)
+        if (collision.GetComponent<Player>() == null)
             return;
 
-        //if (collision.transform.name == "Player")
-        //    return;
-        //if (collision.transform.CompareTag("Player") == false)
-        //    return;
-              
+        if (collision.name == "Player")
+            return;
+
+        if (collision.CompareTag("Player") == false)
+            return;
+
         GetComponent<Collider2D>().enabled = false;
 
         //print(collision.transform);

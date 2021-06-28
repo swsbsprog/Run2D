@@ -17,7 +17,7 @@ public class MagnetAbility : MonoBehaviour
     Dictionary<Transform, RefFloat> items = new Dictionary<Transform, RefFloat>(); //<자석에 이끌린 TR, 가속도>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<CoinItem>() == null)
+        if (collision.GetComponent<CoinItem>() == null)
             return;
 
         if (items.ContainsKey(collision.transform))
