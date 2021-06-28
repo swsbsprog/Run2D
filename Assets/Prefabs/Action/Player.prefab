@@ -128,6 +128,19 @@ MonoBehaviour:
   gravityScale: 20
   speed: 20
   midAirVelocity: 10
+  attacks:
+  - clipName: MeleeAttack1
+    animationTime: 0.4
+    dashSpeed: 40
+    dashTime: 0.05
+  - clipName: MeleeAttack2
+    animationTime: 0.7
+    dashSpeed: 40
+    dashTime: 0.1
+  - clipName: MeleeAttack3
+    animationTime: 0.9
+    dashSpeed: 40
+    dashTime: 0.1
   rayStart: {fileID: 5294126343474453960}
   rayCheckDistance: 0.1
   groundLayer:

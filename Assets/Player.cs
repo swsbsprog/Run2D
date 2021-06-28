@@ -33,17 +33,26 @@ public class Player : MonoBehaviour
     int jumpCount = 0;
     void Update()
     {
-        Move();
-
-        Jump();
-
+        if(state != StateType.Attack)
+        { 
+            Move();
+            Jump();
+        }
         Attack();
 
         UpdateSprite();
     }
 
-    public string attackClipName = "MeleeAttack1";
-    public float animationTime = 0.6f;
+    [System.Serializable]
+    public class AttackInfo
+    {
+        public string clipName;
+        public float animationTime;
+        public float dashSpeed;
+        public float dashTime;
+    }
+    public List<AttackInfo> attacks;
+
     StateType state = StateType.IdleOrRunOrJump;
     public enum StateType
     {
@@ -55,16 +64,43 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             // 공격 애니메이션 재생.
-            StartCoroutine(AttackCo());
+            if (attackHandle != null)
+                StopCoroutine(attackHandle);
+            attackHandle = StartCoroutine(AttackCo());
         }
     }
+    Coroutine attackHandle;
 
+    //첫번째 공격 시작
+    // 첫번째 공격 코루틴 대기
+    // 두번째 공격 시작
+    // 두번째 공격 코루틴 대기
+    // 첫번째 공격 코루틴 끝
+    int currentAttackIndex = 0;
     private IEnumerator AttackCo()
     {
         state = StateType.Attack;
-        animator.Play(attackClipName);
-        yield return new WaitForSeconds(animationTime);
+        var currentAttack = attacks[currentAttackIndex];
+        currentAttackIndex++;
+        if (currentAttackIndex == attacks.Count)
+            currentAttackIndex = 0;
+
+        animator.Play(currentAttack.clipName);
+        //currentAttack.dashTime 동안 currentAttack.dashSpeed로 이동해라.
+
+        float dashEndTime = Time.time + currentAttack.dashTime;
+        float waitEndTime = Time.time + currentAttack.animationTime;
+        while(waitEndTime > Time.time)
+        {
+            if (dashEndTime > Time.time)
+                transform.Translate(currentAttack.dashSpeed * Time.deltaTime, 0, 0);
+            yield return null;
+        }
+        //yield return new WaitForSeconds(currentAttack.animationTime);
+
+        //연속 공격이 끝난다음 실행되는곳
         state = StateType.IdleOrRunOrJump;
+        currentAttackIndex = 0;
     }
 
     float moveX;
