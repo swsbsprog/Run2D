@@ -1,10 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class MagnetAbility : MonoBehaviour
 {
+    private void Awake()
+    {
+        instance = this;
+    }
     class RefFloat
     {
         public float acc;
@@ -22,6 +27,12 @@ public class MagnetAbility : MonoBehaviour
     }
 
     public float accelerate = 30; // 초당 가속도.
+    internal static MagnetAbility instance;
+
+    internal void RemoveItem(Transform transform)
+    {
+        items.Remove(transform);
+    }
 
     private void Update()
     {
