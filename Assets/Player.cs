@@ -22,58 +22,29 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        //animator = transform.Find("Sprite").GetComponent<Animator>();
         animator = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         rigid.gravityScale = gravityScale;
-        cameraTr = Camera.main.transform;
-        offsetXCameraPos = cameraTr.position.x - transform.position.x;
-        // offsetXCameraPos : 3
-        //animator.Play("Run");
     }
 
-    public Transform cameraTr;
-    public float offsetXCameraPos;  // 카메라와 나의 차이 기본값
-    public float allowOffsetX = 0.2f;
-    public float restoreSpeed = 40;
-    private void RestoreXPosition()
-    {
-        float offsetX = cameraTr.position.x - transform.position.x;
-        if(offsetX > offsetXCameraPos + allowOffsetX)
-        {
-            // 위치를 수정해야한다.
-            transform.Translate(restoreSpeed * Time.deltaTime, 0, 0);
-        }
-    }
 
     public float speed = 20;
     public float midAirVelocity = 10;
     int jumpCount = 0;
     void Update()
     {
-        if (RunGameManager.IsPlaying() == false)
-            return;
+        Move();
 
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        Jump();
 
-        if (jumpCount < 1)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                jumpCount++;
-                rigid.velocity = Vector2.zero;
-                rigid.AddForce(jumpForce);
-            }
-        }
+        UpdateSprite();
+    }
 
+    private void UpdateSprite()
+    {
         float velocity = rigid.velocity.y;
         float absVelocity = Mathf.Abs(velocity);
-        //float absVelocity = velocity > 0 ? velocity : -velocity;
-        //float absVelocity = velocity;
-        //if (absVelocity > 0)
-        //    absVelocity = -velocity;
 
-        //string animationName = "";
         string animationName = string.Empty;
         if (IsGround())
         {
@@ -82,20 +53,51 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (absVelocity < midAirVelocity) 
+            if (absVelocity < midAirVelocity)
                 animationName = "Jump_MidAir";
-            else if (velocity > 0) 
+            else if (velocity > 0)
                 animationName = "Jump_Up";               //상승. 
             else//하락
             {
-                animationName = "Jump_Fall";                
+                animationName = "Jump_Fall";
             }
         }
         animator.Play(animationName);
-
-
-        RestoreXPosition();
     }
+
+    private void Jump()
+    {
+        if (jumpCount < 1)
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                jumpCount++;
+                rigid.velocity = Vector2.zero;
+                rigid.AddForce(jumpForce);
+            }
+        }
+    }
+
+    private void Move()
+    {
+        //a, d, 좌우 이동.
+        float move = 0;
+        if (Input.GetKey(KeyCode.A)) move = -1;
+        if (Input.GetKey(KeyCode.D)) move = 1;
+
+        transform.Translate(move * speed * Time.deltaTime, 0, 0, Space.World);
+
+        UpdateRotation(move);
+    }
+
+    private void UpdateRotation(float currentMove)
+    {
+        if (currentMove == 0)
+            return;
+
+        transform.rotation = Quaternion.Euler(0, currentMove < 0 ? 180 : 0, 0);
+    }
+
     public Transform rayStart;
     public float rayCheckDistance = 0.1f;
     public LayerMask groundLayer;

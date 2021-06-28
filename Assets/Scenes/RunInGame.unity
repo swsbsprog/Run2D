@@ -991,7 +991,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1549077824, guid: a0bd30fce26eb344595a74199b2d51f7, type: 3}
       propertyPath: waitSeconds
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1737563509, guid: a0bd30fce26eb344595a74199b2d51f7, type: 3}
       propertyPath: m_text
