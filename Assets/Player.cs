@@ -212,6 +212,14 @@ public class Player : MonoBehaviour
         if (monster == null)
             return;
 
+        //collision.contacts
+        //if(내가 몬스터를 밟았다면 )
+        //{
+        //    몬스터는 데미지를 입고
+        //        나는 점프를 하자.
+        //}
+
+
         hitpoint -= monster.damage;
         // 피격 모션,
         // UI반영
