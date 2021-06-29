@@ -7,9 +7,11 @@ public class Monster : MonoBehaviour
 {
     private void Start()
     {
+        animator = transform.GetComponentInChildren<Animator>();
         InitWorldMoveArea();
-        StartCoroutine(PatrolCo());
+        patrolHandle = StartCoroutine(PatrolCo());
     }
+    Coroutine patrolHandle;
 
     private void InitWorldMoveArea()
     {
@@ -22,6 +24,23 @@ public class Monster : MonoBehaviour
     public float maxLocalMoveX = 5;
     public float minWorldMoveX;
     public float maxWorldMoveX;
+    Animator animator;
+    public DirectionType Direction
+    {
+        get { return direction; }
+        set
+        {
+            direction = value;
+            UpdateDirectionSprite();
+            transform.rotation = Quaternion.Euler(0, direction == DirectionType.Left ? 180 : 0, 0);
+        }
+    }
+
+    private void UpdateDirectionSprite()
+    {
+        animator.Play(direction.ToString());
+    }
+
     public DirectionType direction = DirectionType.Right;
     public enum DirectionType
     {
@@ -32,13 +51,14 @@ public class Monster : MonoBehaviour
     {
         while (true)
         {
+            UpdateDirectionSprite();
             while (true)
             {
-                if(direction == DirectionType.Right)
+                if(Direction == DirectionType.Right)
                 {
                     if (maxWorldMoveX < transform.position.x)
                     {
-                        direction = DirectionType.Left;
+                        Direction = DirectionType.Left;
                         break;
                     }
                 }
@@ -46,34 +66,60 @@ public class Monster : MonoBehaviour
                 {
                     if (minWorldMoveX > transform.position.x)
                     {
-                        direction = DirectionType.Right;
+                        Direction = DirectionType.Right;
                         break;
                     }
                 }
 
-                float move = direction == DirectionType.Right ? speed : -speed;
-                transform.Translate(move * Time.deltaTime, 0, 0);
+                //float move = Direction == DirectionType.Right ? speed : -speed;
+                transform.Translate(speed * Time.deltaTime, 0, 0);
                 yield return null;
+
+                while (state == StateType.Hit)
+                    yield return null;
             }
         }
     }
 
+    public enum StateType
+    {
+        Idle,
+        Run,
+        Hit,
+        Die,
+    }
+    public StateType state = StateType.Idle;
     public int hp = 10;
     internal void OnDamge(int damage)
     {
         hp -= damage;
-
         GetComponentInChildren<Animator>().Play("Hit");
 
-        if( hp <= 0)
+        if( hp > 0)
         {
             StartCoroutine(DieCo());
         }
+        else
+        {
+            StartCoroutine(HitCo());
+        }
     }
+
+    public float hitTime = 0.4f;
+    private IEnumerator HitCo()
+    {
+        state = StateType.Hit;
+        yield return new WaitForSeconds(hitTime);
+        state = StateType.Run;
+        UpdateDirectionSprite();
+    }
+
     public float dieDelay = 0.3f;
     public float destroyDelay = 0.7f;
     private IEnumerator DieCo()
     {
+        state = StateType.Die;
+        StopCoroutine(patrolHandle);
         yield return new WaitForSeconds(dieDelay);
         GetComponentInChildren<Animator>().Play("Die");
         yield return new WaitForSeconds(destroyDelay);
