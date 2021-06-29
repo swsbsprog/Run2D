@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IDamgeable
 {
     // 앞뒤로 이동하는 몬스터.
     public float range = 5.5f;
@@ -60,7 +60,8 @@ public class Monster : MonoBehaviour
     }
 
     public int hp = 10;
-    internal void OnDamge(int damage)
+
+    public void OnDamge(int damage)
     {
         hp -= damage;
 
@@ -90,4 +91,5 @@ public class Monster : MonoBehaviour
     {
         return state == StateType.Die;
     }
+
 }
