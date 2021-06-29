@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc386db965ae64247910dc41e45a4144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: {x: 0, y: 3000}
+  jumpForce: {x: 0, y: 3200}
   gravityScale: 20
   speed: 20
   midAirVelocity: 10
@@ -365,6 +365,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  hitPoint: 5
 --- !u!1 &7174658705040712093
 GameObject:
   m_ObjectHideFlags: 0
