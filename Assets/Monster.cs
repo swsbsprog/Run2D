@@ -2,8 +2,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public class BaseMonster : MonoBehaviour
+{
+    protected Animator animator;
+    public int hp = 3;
+    public void OnDamge(int damage)
+    {
+        hp -= damage;
 
-public class Monster : MonoBehaviour, IDamgeable
+        animator.Play("Hit");
+
+        if (hp <= 0)
+        {
+            StartCoroutine(DieCo());
+        }
+    }
+
+    public enum StateType
+    {
+        Patrol,
+        Attack,
+        Attacked,
+        Die
+    }
+    public float dieDelay = 0.3f;
+    public float destroyDelay = 0.7f;
+    internal int damage = 1;
+    protected StateType state = StateType.Patrol;
+    protected IEnumerator DieCo()
+    {
+        state = StateType.Die;
+        GetComponent<Collider2D>().enabled = false;
+        var rb = GetComponent<Rigidbody2D>();
+        if(rb)
+            rb.gravityScale = 0;
+        yield return new WaitForSeconds(dieDelay);
+        GetComponentInChildren<Animator>().Play("Die");
+        yield return new WaitForSeconds(destroyDelay);
+        Destroy(gameObject);
+    }
+}
+public class Monster : BaseMonster
 {
     // 앞뒤로 이동하는 몬스터.
     public float range = 5.5f;
@@ -15,16 +54,8 @@ public class Monster : MonoBehaviour, IDamgeable
         Right,
         Left,
     }
-    StateType state = StateType.Patrol;
-    public enum StateType
-    {
-        Patrol,
-        Attack,
-        Attacked,
-        Die
-    }
     DirectionType direction = DirectionType.Right;
-    Animator animator;
+
     private IEnumerator Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -59,37 +90,11 @@ public class Monster : MonoBehaviour, IDamgeable
         }
     }
 
-    public int hp = 10;
-
-    public void OnDamge(int damage)
-    {
-        hp -= damage;
-
-        animator.Play("Hit");
-
-        if( hp <= 0)
-        {
-            StartCoroutine(DieCo());
-        }
-    }
-    public float dieDelay = 0.3f;
-    public float destroyDelay = 0.7f;
-    internal int damage = 1;
-
-    private IEnumerator DieCo()
-    {
-        state = StateType.Die;
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<Rigidbody2D>().gravityScale = 0;
-        yield return new WaitForSeconds(dieDelay);
-        GetComponentInChildren<Animator>().Play("Die");
-        yield return new WaitForSeconds(destroyDelay);
-        Destroy(gameObject);
-    }
-
     internal bool IsDie()
     {
         return state == StateType.Die;
     }
 
 }
+
+
