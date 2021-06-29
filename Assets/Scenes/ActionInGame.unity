@@ -225,6 +225,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &378761059 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7174658705040712090, guid: 1496395b346b64c419fbca139dfdf546, type: 3}
+  m_PrefabInstance: {fileID: 7174658704092113454}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &380555817
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,6 +800,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1921619154, guid: 1b5c81aa11d4a834bb0cc7ad08e3a328, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 378761059}
     - target: {fileID: 929649336237035985, guid: 1b5c81aa11d4a834bb0cc7ad08e3a328, type: 3}
       propertyPath: m_Name
       value: Flying eye
@@ -817,7 +826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7907742862812164196, guid: 1b5c81aa11d4a834bb0cc7ad08e3a328, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.00000004371139
       objectReference: {fileID: 0}
     - target: {fileID: 7907742862812164196, guid: 1b5c81aa11d4a834bb0cc7ad08e3a328, type: 3}
       propertyPath: m_LocalRotation.x
@@ -825,7 +834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7907742862812164196, guid: 1b5c81aa11d4a834bb0cc7ad08e3a328, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7907742862812164196, guid: 1b5c81aa11d4a834bb0cc7ad08e3a328, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1119,7 +1128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABIIewW2gJhZwIAAA4FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVjMCG4t9YhpId8TGknF1+EtMYahOTRR4Bk+O9dyTZ2KBfkt7tPb9+u/UmEsjUwp83KCP6kOZDvIxLO5NuoDz7CkW61WosP6HLeBHdVSKIx5zd1QiM+CWVW78EZwX6orQzJCYJeiVKb/ZJvIdfWWYRLKi1gyGgXqhVCnyNyxL9xFkpOeJrehdMHnrJkdMYjA+XA9KlpcpOF3yxtKybzBlhM2sL0JkmzRXqXzpbjZB5JvGKS7mvgoaOe627acsxmMU1hr21GIGNaSmFbocSd6mhETmvrsU1M4IJi41FdyK9AbCsXmhgWv5SlBde6YujpXhj0r2ElP3Vj6p7aXaPrnUofPYyKGsqn/6LjSQyXRu8fu1snSbjBVYLtftMTo9YNPB/C919le3Wgckc3Et4qUM96ZbRXHIPO+FDqLUzv+8dLY3kFbNfjjdQr0Ne9292IuwFjh+fY+jGXYr8JyM2sAdZSR7PjWoDBsfxCvXFpbMuAaBDx18Ifuh1uVxt4EMY6DLVNqqBuo70JqWQZLQvNeJdroyDCreYaFJXu9Io07np+V7HBtVeRBxreo/byNta9HlclEe7zk+Qq9KoPl1nZSh+ewFYv3kmhoBcdAs/oU66VatZr6ElXtvampGxQtvWCf90swvgiSzIo2e1mvsjScsxYOuWczjfZ/JZlQElcPaGwTypfG6GtPTg11ZMrXLPu8zJaGVrHVeeGHlbiY68HlgtV6jUzAOqlYbgIB4OX4CvJl1ygQWtwTqg4b/JZEKnZDnhxISpip8ujM7ToWQpSi3ftAlKQPH5PCnIm539QSwMEFAAACAgAAEgh7HpG8/ZtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTVUVBKL0osyCgGihiCOKWZKSB2tFJyioWlgWVqWrJpkpmFpXGabnKysVFKSqJZkqWZabJlaqJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAEgh7BbaAmFnAgAADgUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAEgh7HpG8/ZtAAAAeAAAAAkAJAAAAAAAAAAAAAAAtAIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABsAwAAAAA=
+    dataString: UEsDBBQAAAgIAABIIez8ncp5VAIAAPUEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMzqVjCKG4t9YQ0kM+JqSTiy9CWmMNsuTRR4Bk+O9dyTZ26Amx7+3qvd2VP4lQtgbmtFkbwR80B/JzRMKZfBv14D0c6U6rjfiAjvMmuCsDiUbOC3VCY3wS0qyuwBnBfqmdDOQEg16JQptqxXeQaesshgsqLSBktAvZCkOfI3LEn3EaUk54mv4Ipw88pcnojEcGyoHpqdNZR53MW2ZD9IpJWtXAg+qeP1ssWv5sGnkKDbWUIJ5pKYVt1RB3qqPbjNbWoxckcEHRXZQQ+CWIXemCkGHyU1FYcK11Q09LYbBJTVXyWzedq6jdN8LeqfThnvksSmpqPvwHjycRLoyu7rtrJ0m4wpWC7V/oiVHrBp0dhpdfdXt1oHJPtxLeSlCPem20VxxBZ3xI9Ramy/7vxVlWAtv38UbqVdDXfb+76XRjDB7O0fwxk6LaBuj7rAlspI7tjtMHg4P5g4Ljbti2BEaDir8WXuluuEQtcCeMdQi1LlWQt9XeBCpZxZ4FN95l2iiI4VZ0DYpKd3rGMu56glfY4Nor5I6G59Je3mLdK7hKieGenyRX0LM+XIZlS314AFs+eSeFgl50AB6xT5lWqlmwYU+6tI03BWWDtJ0X/OtqEcYXaZJCwW6380V6U4wZu5lyTufbdH7LUqAk7p5Q6JPK50Zo2x6cmuqLK9yz7isyWhtax2Xnhh7W4qPSg5YLVegNMwDqqalwEQ4GL8FHyVdcYIM24JxQcd7kMydSsz3w/FIoj05XR2do3lfJSS3etQuRnGTxs5GTMzn/A1BLAwQUAAAICAAASCHsekbz9m0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0UnKKhaWBZWpasmmSmYWlcZpucrKxUUpKolmSpZlpsmVqolIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAASCHs/J3KeVQCAAD1BAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAASCHsekbz9m0AAAB4AAAACQAkAAAAAAAAAAAAAAChAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAFkDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1132,7 +1141,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -12336,10 +12345,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8622257576440652979, guid: e5507f31c800a8f41a483ddb90a51160, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5507f31c800a8f41a483ddb90a51160, type: 3}
 --- !u!1001 &7174658704092113454
@@ -12349,21 +12354,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7174658704588543800, guid: 1496395b346b64c419fbca139dfdf546, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7174658704588543801, guid: 1496395b346b64c419fbca139dfdf546, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7174658704588543801, guid: 1496395b346b64c419fbca139dfdf546, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.39
+      value: 11.85
       objectReference: {fileID: 0}
     - target: {fileID: 7174658704588543801, guid: 1496395b346b64c419fbca139dfdf546, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.31
+      value: 14.52
       objectReference: {fileID: 0}
     - target: {fileID: 7174658704588543801, guid: 1496395b346b64c419fbca139dfdf546, type: 3}
       propertyPath: m_LocalPosition.z
