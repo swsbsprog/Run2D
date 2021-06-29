@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Monster monster = collision.gameObject.GetComponent<Monster>();
-        if (monster == null || monster.IsDie() == false)
+        if (monster == null || monster.IsDie())
             return;
 
         bool iSstepOn = false; // 밟았을때 true

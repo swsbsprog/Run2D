@@ -300,7 +300,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &7174658704588543803
 BoxCollider2D:
@@ -365,6 +365,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  delayHit: 0.3
+  hitpoint: 5
 --- !u!1 &7174658705040712093
 GameObject:
   m_ObjectHideFlags: 0
