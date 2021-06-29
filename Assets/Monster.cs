@@ -41,6 +41,11 @@ public class BaseMonster : MonoBehaviour
         yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
     }
+
+    internal bool IsDie()
+    {
+        return state == StateType.Die;
+    }
 }
 public class Monster : BaseMonster
 {
@@ -54,7 +59,7 @@ public class Monster : BaseMonster
         Right,
         Left,
     }
-    DirectionType direction = DirectionType.Right;
+    private DirectionType direction = DirectionType.Right;
 
     private IEnumerator Start()
     {
@@ -88,11 +93,6 @@ public class Monster : BaseMonster
             if (state == StateType.Die)
                 yield break;
         }
-    }
-
-    internal bool IsDie()
-    {
-        return state == StateType.Die;
     }
 
 }

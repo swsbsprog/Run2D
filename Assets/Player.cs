@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Monster monster = collision.gameObject.GetComponent<Monster>();
+        BaseMonster monster = collision.gameObject.GetComponent<BaseMonster>();
         if (monster == null || monster.IsDie())
             return;
 
