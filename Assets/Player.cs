@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
     int jumpCount = 0;
     void Update()
     {
-        if(state != StateType.Attack)
+        if (state == StateType.IdleOrRunOrJump)
         { 
             Move();
             Jump();
@@ -58,7 +59,9 @@ public class Player : MonoBehaviour
     public enum StateType
     {
         IdleOrRunOrJump,
-        Attack,
+        Attack,     // 내가 공격했다.
+        Attacked, //내가 맞았다. 피격
+        Die,
     }
     private void Attack()
     {
@@ -113,7 +116,7 @@ public class Player : MonoBehaviour
     float moveX;
     private void UpdateSprite()
     {
-        if (state == StateType.Attack)
+        if (state != StateType.IdleOrRunOrJump)
             return;
 
         float velocity = rigid.velocity.y;
@@ -201,5 +204,45 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawRay(rayStart.position, Vector2.down * rayCheckDistance);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Monster monster = collision.gameObject.GetComponent<Monster>();
+        if (monster == null)
+            return;
+
+        hitpoint -= monster.damage;
+        // 피격 모션,
+        // UI반영
+        StartCoroutine(HitCo());
+
+        if (hitpoint <= 0)
+        {
+            StartCoroutine(DieCo());
+        }
+    }
+
+    private IEnumerator DieCo()
+    {
+        yield return new WaitForSeconds(delayHit);
+        state = StateType.Die;
+        animator.Play("Die");
+    }
+
+    public float delayHit = 0.3f;
+    private IEnumerator HitCo()
+    {
+        state = StateType.Attacked;
+        animator.Play( Random.Range(0, 2) > 0 ? "Hit1" : "Hit2");
+        // 쉬고
+        yield return new WaitForSeconds(delayHit);
+        state = StateType.IdleOrRunOrJump;
+    }
+
+    public int hitpoint = 5;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //collision.GetComponent<Monster>()
     }
 }

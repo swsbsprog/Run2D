@@ -19,6 +19,8 @@ public class Monster : MonoBehaviour
     }
     public float dieDelay = 0.3f;
     public float destroyDelay = 0.7f;
+    internal int damage = 1;
+
     private IEnumerator DieCo()
     {
         yield return new WaitForSeconds(dieDelay);
