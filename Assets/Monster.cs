@@ -92,16 +92,19 @@ public class Monster : MonoBehaviour
     public int hp = 10;
     internal void OnDamge(int damage)
     {
+        if (state == StateType.Die)
+            return;
+
         hp -= damage;
         GetComponentInChildren<Animator>().Play("Hit");
 
         if( hp > 0)
         {
-            StartCoroutine(DieCo());
+            StartCoroutine(HitCo());
         }
         else
         {
-            StartCoroutine(HitCo());
+            StartCoroutine(DieCo());
         }
     }
 
@@ -120,9 +123,18 @@ public class Monster : MonoBehaviour
     {
         state = StateType.Die;
         StopCoroutine(patrolHandle);
+
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+
         yield return new WaitForSeconds(dieDelay);
         GetComponentInChildren<Animator>().Play("Die");
         yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
+    }
+
+    internal bool Attackable()
+    {
+        return state == StateType.Idle || state == StateType.Run;
     }
 }

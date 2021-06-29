@@ -151,11 +151,16 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                jumpCount++;
-                rigid.velocity = Vector2.zero;
-                rigid.AddForce(jumpForce);
+                StartJump();
             }
         }
+    }
+
+    private void StartJump()
+    {
+        jumpCount++;
+        rigid.velocity = Vector2.zero;
+        rigid.AddForce(jumpForce);
     }
 
     private void Move()
@@ -212,15 +217,20 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Monster monster = collision.gameObject.GetComponent<Monster>();
-        if (monster == null)
+        if (monster == null || monster.Attackable() == false)
             return;
 
         //collision을 밟은 거면 점프, 아니라면 플레이어 Hit,
-        bool isHit = true;
+        bool isHit = collision.contacts[0].normal.y < 0.9f;
 
         if (isHit)
         {
             OnHit();
+        }
+        else
+        {
+            StartJump();
+            monster.OnDamge(1);
         }
     }
 
