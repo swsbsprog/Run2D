@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     int jumpCount = 0;
     void Update()
     {
-        if(state != StateType.Attack)
+        if(state == StateType.IdleOrRunOrJump)
         { 
             Move();
             Jump();
@@ -59,6 +59,8 @@ public class Player : MonoBehaviour
     {
         IdleOrRunOrJump,
         Attack,
+        Hit,
+        Die,
     }
     private void Attack()
     {
@@ -113,7 +115,7 @@ public class Player : MonoBehaviour
     float moveX;
     private void UpdateSprite()
     {
-        if (state == StateType.Attack)
+        if (state != StateType.IdleOrRunOrJump)
             return;
 
         float velocity = rigid.velocity.y;
@@ -201,5 +203,53 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawRay(rayStart.position, Vector2.down * rayCheckDistance);
+    }
+
+    public int hitPoint = 5;
+    private float delayDie = 0.5f;
+    private float delayHit = 0.5f;
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Monster monster = collision.gameObject.GetComponent<Monster>();
+        if (monster == null)
+            return;
+
+        //collision을 밟은 거면 점프, 아니라면 플레이어 Hit,
+        bool isHit = true;
+
+        if (isHit)
+        {
+            OnHit();
+        }
+    }
+
+    private void OnHit()
+    {
+        animator.Play(UnityEngine.Random.Range(0, 2) > 0 ? "Hit1" : "Hit2");
+        --hitPoint;
+
+        if (hitPoint > 0)
+        {
+            StartCoroutine(HitCo());
+        }
+        else
+        {
+            StartCoroutine(DieCo());
+        }
+    }
+
+    private IEnumerator HitCo()
+    {
+        state = StateType.Hit;
+        yield return new WaitForSeconds(delayHit);
+        state = StateType.IdleOrRunOrJump;
+    }
+
+    private IEnumerator DieCo()
+    {
+        state = StateType.Hit;
+        yield return new WaitForSeconds(delayDie);
+        animator.Play("Die");
     }
 }
