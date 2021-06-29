@@ -152,11 +152,16 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                jumpCount++;
-                rigid.velocity = Vector2.zero;
-                rigid.AddForce(jumpForce);
+                StartJump();
             }
         }
+    }
+
+    private void StartJump()
+    {
+        jumpCount++;
+        rigid.velocity = Vector2.zero;
+        rigid.AddForce(jumpForce);
     }
 
     private void Move()
@@ -209,25 +214,31 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Monster monster = collision.gameObject.GetComponent<Monster>();
-        if (monster == null)
+        if (monster == null || monster.IsDie() == false)
             return;
 
-        //collision.contacts
-        //if(내가 몬스터를 밟았다면 )
-        //{
-        //    몬스터는 데미지를 입고
-        //        나는 점프를 하자.
-        //}
+        bool iSstepOn = false; // 밟았을때 true
+        if (collision.contacts[0].normal.y > 0.9f)
+            iSstepOn = true;
 
-
-        hitpoint -= monster.damage;
-        // 피격 모션,
-        // UI반영
-        StartCoroutine(HitCo());
-
-        if (hitpoint <= 0)
+        if (iSstepOn) // 내가 몬스터를 밟았다면
         {
-            StartCoroutine(DieCo());
+            monster.OnDamge(1); //몬스터는 데미지를 입고
+
+            //나는 점프를 하자.
+            StartJump();
+        }
+        else
+        {
+            hitpoint -= monster.damage;
+            // 피격 모션,
+            // UI반영
+            StartCoroutine(HitCo());
+
+            if (hitpoint <= 0)
+            {
+                StartCoroutine(DieCo());
+            }
         }
     }
 
