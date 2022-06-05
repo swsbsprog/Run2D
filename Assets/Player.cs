@@ -113,6 +113,14 @@ public class Player : MonoBehaviour
         currentAttackIndex = 0;
     }
 
+    public enum Direction
+    {
+        Stop,
+        Right,
+        Left
+    }
+
+    public Direction MoveDirection => moveX == 0 ? Direction.Stop : (moveX > 0 ? Direction.Right : Direction.Left);
     float moveX;
     private void UpdateSprite()
     {
